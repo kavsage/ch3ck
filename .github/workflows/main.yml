@@ -26,8 +26,8 @@ jobs:
           #git checkout --progress --force -B $BRANCH refs/remotes/origin/$BRANCH
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          #git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           #git pull --rebase
           git commit --allow-empty -m "a commit a day "
-          git push --force https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} main
+          git push --force https://${{ secrets.MY_TOKEN }}@github.com/${{ github.repository }} main
 
