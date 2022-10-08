@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  #push:
+    #branches: [ "main" ]
+  schedule:
+    - cron: "0 */11 * * *"
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # - uses: actions/checkout@v3
+
+      # Runs a single command using the runners shell
+      - run: |
+          git config --global --add safe.directory $(pwd)
+          git clone --quiet https://${{ github.token }}@github.com/${{ github.repository }} .
+          git checkout ${{ github.sha }}
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git pull --rebase
+          git commit --allow-empty -m "a commit a day "
+          git push 
+          
