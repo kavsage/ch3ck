@@ -16,18 +16,19 @@ jobs:
 
       # Runs a single command using the runners shell
       - run: |
-          git config --global --add safe.directory $(pwd)
-          git clone --quiet https://${{ github.token }}@github.com/${{ github.repository }} .
-          git checkout ${{ github.sha }}
-          #BRANCH="${GITHUB_REF/#refs\/heads\//}"
-          #git clone --filter=blob:none --no-checkout --depth 1 --sparse https://${{ github.token }}@github.com/${{ github.repository }} .
-          #git sparse-checkout init --cone --sparse-index
-          #git -c protocol.version=2 fetch --no-tags --prune --progress --depth=1 origin +${GITHUB_SHA}:refs/remotes/origin/${BRANCH}
-          #git checkout --progress --force -B $BRANCH refs/remotes/origin/$BRANCH
+          #git config --global --add safe.directory $(pwd)
+          #git clone --quiet https://${{ github.token }}@github.com/${{ github.repository }} .
+          #git checkout ${{ github.sha }}
+          BRANCH="${GITHUB_REF/#refs\/heads\//}"
+          git clone --filter=blob:none --no-checkout --depth 1 --sparse https://${{ github.token }}@github.com/${{ github.repository }} .
+          git sparse-checkout init --cone --sparse-index
+          git -c protocol.version=2 fetch --no-tags --prune --progress --depth=1 origin +${GITHUB_SHA}:refs/remotes/origin/${BRANCH}
+          git checkout --progress --force -B $BRANCH refs/remotes/origin/$BRANCH
           git config user.name github-actions
           git config user.email github-actions@github.com
           #git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           #git pull --rebase
           git commit --allow-empty -m "a commit a day "
-          git push --force https://${{ secrets.TOKEN }}@github.com/${{ github.repository }} main
+          #git push --force https://${{ secrets.TOKEN }}@github.com/${{ github.repository }} main
+          git push --force https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} main
 
