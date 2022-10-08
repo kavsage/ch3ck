@@ -27,7 +27,7 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           rm -rf *.txt
-          git pull
+          #git pull
           DATE=`date +%Y%m%d%H%M`
           touch $DATE.txt
           git add .
