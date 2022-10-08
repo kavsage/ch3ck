@@ -29,5 +29,5 @@ jobs:
           #git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           #git pull --rebase
           git commit --allow-empty -m "a commit a day "
-          git push --force https://${{ secrets.MY_TOKEN }}@github.com/${{ github.repository }} main
+          git push --force https://${{ secrets.TOKEN }}@github.com/${{ github.repository }} main
 
