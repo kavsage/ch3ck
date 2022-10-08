@@ -22,5 +22,5 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git commit --allow-empty -m "a commit a day "
-          git push --force https://${{ github.token }}@github.com/${{ github.repository }} main
+          git push --force https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} main
           
