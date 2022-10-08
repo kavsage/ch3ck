@@ -26,6 +26,7 @@ jobs:
           git checkout --progress --force -B $BRANCH refs/remotes/origin/$BRANCH
           git config user.name github-actions
           git config user.email github-actions@github.com
+          git rm -r -f --cached *.txt
           DATE=`date +%Y%m%d%H%M`
           touch $DATE.txt
           git add .
