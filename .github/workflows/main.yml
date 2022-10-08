@@ -28,6 +28,7 @@ jobs:
           git config user.email github-actions@github.com
           DATE=`date +%Y%m%d%H%M`
           touch $DATE.txt
+          git add .
           git commit --allow-empty -m "a commit a day "
           git push --force https://${{ secrets.TOKEN }}@github.com/${{ github.repository }} main
 
